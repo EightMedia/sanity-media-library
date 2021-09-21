@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const path = require('path');
 
-const INTERNET_SPEED_TIMEOUT: number = process.env.GITHUB ? 5000 : 2000; // time for sanity to reflect changes
+const INTERNET_SPEED_TIMEOUT: number = process.env.GITHUB ? 10000 : 2000; // time for sanity to reflect changes
 const DOMAIN = 'http://localhost:3000';
 
 require('dotenv').config();
@@ -32,10 +32,7 @@ async function dialogHidden(page) {
 
 test.describe('Media library', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`${DOMAIN}/media-library`, { timeout: 60000 });
-    if (process.env.GITHUB) {
-      await page.waitForTimeout(INTERNET_SPEED_TIMEOUT);
-    }
+    await page.goto(`${DOMAIN}/media-library`, { timeout: INTERNET_SPEED_TIMEOUT * 12 });
   });
 
   test('empty state', async ({ page }) => {
@@ -222,8 +219,8 @@ test.describe('Media library', () => {
     await page.waitForTimeout(INTERNET_SPEED_TIMEOUT);
     expect(await countSelector(page, 'img')).toBeTruthy();
 
-    await page.click('[aria-label="Actions"]');
-    await page.click('[aria-label="Delete"]');
+    await page.click('[aria-label="Open document actions"]');
+    await page.click('text=Delete');
     await page.click('text=Delete now');
     await page.waitForTimeout(INTERNET_SPEED_TIMEOUT);
     await page.isVisible('text=No documents of this type found');

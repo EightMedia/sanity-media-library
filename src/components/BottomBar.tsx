@@ -27,7 +27,7 @@ export const BottomBar = ({
   const onView = () => (selectedAsset ? window.open(selectedAsset.url, '_blank') : null);
 
   return (
-    <Flex padding={4} justify="flex-end" align="center">
+    <Flex padding={3} justify="flex-end" align="center">
       {isAssetSource ? (
         <Inline space={3} style={{ marginRight: 'auto' }}>
           <Button mode="ghost" onClick={onCancel ? onCancel : () => {}} text="Cancel" />

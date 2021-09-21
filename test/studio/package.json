@@ -3,5 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "main": "package.json",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "styled-components": "^5.2.0"
+  }
 }
